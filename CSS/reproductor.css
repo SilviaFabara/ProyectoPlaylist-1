@@ -49,7 +49,7 @@ nav {
 /* headerfin */
 .container {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1.5fr 2fr;
     grid-gap: 10px;
     min-height: 100vh;
     grid-row-gap: 10px;
@@ -210,12 +210,12 @@ li {
 
 
 .results-container {
-    height: 100px;
+   
     list-style-type: none;
     padding: 0;
     overflow-y: scroll;
     overflow-x: hidden;
-
+    max-height: 300px;
 }
 
 
@@ -242,6 +242,7 @@ li {
 
 
 .portada_album {
+    
 
     width: 90%;
     height: 60%;
@@ -250,6 +251,7 @@ li {
 }
 
 .content {
+    
     position: relative;
     background-color: #333;
     /* Color de fondo para el reproductor */
@@ -263,14 +265,11 @@ li {
 }
 
 .portada_album {
-    display: flex;
-    justify-content: center;
+    
     align-items: center;
     margin-top: 20px;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 0 5px #000;
+   
 }
 
 
@@ -315,4 +314,34 @@ li {
 
 
 /* apartado reproduccion-fin */
+.song img {
+    width: 20%; /* anchura máxima al 100% del contenedor de la iamgen para el contenedor busqueda */
+    height: 20%;
+    margin-right: 2px;
+}
+.song h4, .song p   {
+    margin-bottom: 15px; 
+    
+}
+.left-song{
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+    margin-bottom: 15px;
+}
+/* detalles del apartado de reproduccion-nombre-artista-boton de favite*/
+.cancion-info {
+    display: grid; 
+    grid-template-rows: 1fr ; /* Alinea verticalmente los elementos hijos */
+    gap: 1px; /* Espacio entre los elementos hijos */
+}
 
+.cancion-img {
+    max-width: 100%; /* Ancho máximo de la imagen */
+}
+
+.cancion-details {
+    display: flex; /* Establece un contenedor flexible */
+    align-items: center; /* Alinea verticalmente los elementos hijos */
+    gap: 7%; /* Los elementos secundarios se apilan verticalmente */
+}
