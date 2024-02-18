@@ -165,7 +165,7 @@ function addsongToplaylist() {
 }
 
 function addsongToFavorite() {
-  favorite.addcancion(cancionactual)
+  favorite.addsong(cancionactual)
   cambiocancionactual(cancionactual.id)
 }
 
