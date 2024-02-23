@@ -1,3 +1,4 @@
+
 class Usuario{
     constructor(nombre, contraseña) {
         // Asignar los valores de los parámetros a los atributos de la instancia
@@ -15,6 +16,23 @@ class Usuario{
     }
 
 
+}
+
+function iniciarSesion() {
+    const usuarioInput = document.getElementById("usuarioInput").value;
+    const contrasenaInput = document.getElementById("contrasenaInput").value;
+
+    // Verificar las credenciales con el método iniciarSesion de la clase Usuario
+    if (usuario1.iniciarSesion(usuarioInput, contrasenaInput)) {
+        // Credenciales válidas, redirigir a otra página
+        window.location="Webplayer.html";
+    } else if (usuario2.iniciarSesion(usuarioInput, contrasenaInput)) {
+        // Credenciales válidas para el segundo usuario, redirigir a otra página
+        window.location= 'Webplayer.html';
+    } else {
+        // Credenciales inválidas
+        alert("Credenciales incorrectas. Inténtalo de nuevo.");
+    }
 }
 
 //Crear dos usuarios con sus respectivas contraseñas

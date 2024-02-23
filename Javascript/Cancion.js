@@ -14,6 +14,7 @@ class Cancion {
     this.audio = audio;
     this._isfavorite = isfavorite;
     this._isplaylist = isplaylist;
+
   }
 }
 
@@ -26,7 +27,7 @@ const allsongs = [
     genero: "Pop rock Rumba",
     año: 2001,
     foto: "../Portadas/portada1.jpg",
-    audio: "../Canciones\Estopa - Como Camaron (Videoclip).mp3"
+    audio: "../Canciones/Estopa - Como Camaron (Videoclip).mp3"
 
   }),
 
@@ -36,7 +37,7 @@ const allsongs = [
     genero: "Pop rock Rumba",
     año: 2001,
     foto: "../Portadas/portada1.jpg",
-    audio: "../Canciones/Estopa - Vino Tinto.mp3"
+    audio: "../Canciones/Estopa-Vino Tinto.mp3"
 
   }),
 
@@ -179,9 +180,12 @@ function removesongFromFavorite() {
   cambiocancionactual(cancionactual.id)
 }
 
+
+
 function cambiocancionactual(id) {
   const cancion = allsongs.find(c => c.id === id); // Asegúrate de que las canciones tengan una propiedad id
   cancionactual = cancion;
+  const audioControlsDiv = document.getElementById('audioControls');
   reproductorContainer.innerHTML = `
   <div class="cancion-info">
     
@@ -194,7 +198,7 @@ function cambiocancionactual(id) {
         <i class="bi bi-x-lg"></i> Remove from favorites
       </button>`:
       `<button class="add-to-favorite-btn secondary-btn" onClick="addsongToFavorite()">
-        <i class="bi bi-heart"></i> Add to favorites
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>
       </button>`}
     ${cancion._isplaylist ?
       `<button class="add-to-playlist-btn" onClick="removesongFromplaylist()">
@@ -202,16 +206,62 @@ function cambiocancionactual(id) {
       </button>`
       :
       `<button class="add-to-playlist-btn" onClick="addsongToplaylist()">
-        <i class="bi bi-cart"></i> Add to playlist
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" ><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
+      
       </button>`}
     </div>
   </div>
-  `;
+  </div>
 
+`;
 }
 cambiocancionactual(0)
 
+// Obtener referencias a los elementos del reproductor
+const audioPlayer = document.getElementById('audioPlayer');
+const playPauseButton = document.getElementById('playPauseButton');
+const prevButton = document.getElementById('prevButton');
+const nextButton = document.getElementById('nextButton');
 
+// Definir un índice para controlar la canción actual en el array allsongs
+let currentIndex = 0;
+
+// Cargar la primera canción al iniciar la página
+loadSong(currentIndex);
+
+// Función para cargar una canción en el reproductor
+function loadSong(index) {
+    const song = allsongs[index];
+    audioPlayer.src = song.audio;
+}
+
+// Función para reproducir o pausar la canción
+function togglePlayPause() {
+    if (audioPlayer.paused) {
+        audioPlayer.play();
+    } else {
+        audioPlayer.pause();
+    }
+}
+
+// Función para reproducir la siguiente canción
+function playNextSong() {
+    currentIndex = (currentIndex + 1) % allsongs.length;
+    loadSong(currentIndex);
+    audioPlayer.play();
+}
+
+// Función para reproducir la canción anterior
+function playPreviousSong() {
+    currentIndex = (currentIndex - 1 + allsongs.length) % allsongs.length;
+    loadSong(currentIndex);
+    audioPlayer.play();
+}
+
+// Agregar eventos de clic a los botones
+playPauseButton.addEventListener('click', togglePlayPause);
+prevButton.addEventListener('click', playPreviousSong);
+nextButton.addEventListener('click', playNextSong);
 
 const rebusquedaContainerList = document.getElementById('search-results')
 const playlistContainerList = document.getElementById('lis_result')
@@ -220,7 +270,6 @@ const favoritesContainerList = document.getElementById('favorites')
 const searchanswer = new Songlist({ nombre: "Respuesta de busqueda", canciones: allsongs, container: rebusquedaContainerList })
 const favorite = new Songlist({ nombre: "Favoritos", container: favoritesContainerList })
 const playlist = new Songlist({ nombre: "My play list", container: playlistContainerList })
-
 
 
 

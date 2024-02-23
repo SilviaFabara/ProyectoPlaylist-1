@@ -275,32 +275,35 @@ li {
 
 
 
-.controls {
+#controls {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.controls button {
+#controls button {
     background: none;
     border: none;
     cursor: pointer;
 
 }
-
-.controls button svg {
-    width: 50px;
-    height: 50px;
+ svg {
+    width: 20%;
+    height: 20%;
     fill: #f0f0f0;
+    margin-top: 40%;
+    /* Centrar horizontalmente */
+    
     /* Color de los íconos */
 }
 
-.controls button svg:hover {
+#controls, button, svg:hover {
     fill: #c300ff;
+   
     /* Color de los íconos de reproduccion al colocar el mouse */
 }
 
-.controls button:focus {
+#controls button:focus {
     outline: none;
 }
 
@@ -332,16 +335,17 @@ li {
 /* detalles del apartado de reproduccion-nombre-artista-boton de favite*/
 .cancion-info {
     display: grid; 
-    grid-template-rows: 1fr ; /* Alinea verticalmente los elementos hijos */
-    gap: 1px; /* Espacio entre los elementos hijos */
+    grid-template-rows: 1fr ; 
+    gap: 1px; 
 }
 
 .cancion-img {
-    max-width: 100%; /* Ancho máximo de la imagen */
+    max-width: 100%; 
 }
 
 .cancion-details {
-    display: flex; /* Establece un contenedor flexible */
-    align-items: center; /* Alinea verticalmente los elementos hijos */
-    gap: 7%; /* Los elementos secundarios se apilan verticalmente */
+    display: flex; 
+    align-items: center; 
+    gap: 7%; 
 }
+
