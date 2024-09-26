@@ -16,32 +16,14 @@
         <label for="password" >Contraseña:</label>
         <input type="password" id="contrasenaInput" name="password">
       
-        <button  onclick="iniciarSesion()">Iniciar sesion</button>
+        <button id=" loginbotton" onclick="iniciarSesion()">Iniciar sesion</button>
       </form>
 
 
 
 
-    <script>
-        function iniciarSesion() {
-            const usuarioInput = document.getElementById("usuarioInput").value;
-            const contrasenaInput = document.getElementById("contrasenaInput").value;
+    
 
-            // Verificar las credenciales con el método iniciarSesion de la clase Usuario
-            if (usuario1.iniciarSesion(usuarioInput, contrasenaInput)) {
-                // Credenciales válidas, redirigir a otra página
-                window.location="Webplayer.html";
-            } else if (usuario2.iniciarSesion(usuarioInput, contrasenaInput)) {
-                // Credenciales válidas para el segundo usuario, redirigir a otra página
-                window.location= 'Webplayer.html';
-            } else {
-                // Credenciales inválidas
-                alert("Credenciales incorrectas. Inténtalo de nuevo.");
-            }
-        }
-
-    </script>
-
-    <script src="../Playlist.js"></script>
+    
 </body>
 </html>
